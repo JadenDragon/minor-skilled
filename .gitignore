@@ -60,3 +60,6 @@ crashlytics-build.properties
 
 
 SystemMechanics-Playground/Temp/
+
+# ignore default layouts
+Library/CurrentLayout-default.dwlt
