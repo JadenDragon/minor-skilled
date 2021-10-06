@@ -52,13 +52,6 @@ public class PlayerController : MonoBehaviour
         charCntrl.Move(currentMovement);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            //Debug.Log("triggered by item");
-            GameManager.current.ItemPickup();
-        }
-    }
+    
 
 }

@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class ItemController : MonoBehaviour
 {
+
+    private int count;
+
     // Start is called before the first frame update
     void Start()
     {
         //calls gameManager and accesses the onItemPickupTrigger action
         //adds ItemController to gameManager list of subscribed events
         GameManager.current.onItemPickupTrigger += OnItemPickup;
+        count = 0;
     }
 
 
@@ -33,6 +37,7 @@ public class ItemController : MonoBehaviour
         {
             //Debug.Log("triggered by item");
             GameManager.current.ItemPickup();
+            count += 1;
         }
     }
 }
