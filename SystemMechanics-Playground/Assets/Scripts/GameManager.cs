@@ -14,11 +14,14 @@ public class GameManager : MonoBehaviour
 
     //define onItemPickup event
     public event System.Action onItemPickupTrigger;
+
     public void ItemPickup()
     {
         if (onItemPickupTrigger != null)
         {
+            Debug.Log("Item is here boy");
             onItemPickupTrigger();
+            
         }
     }
 }
