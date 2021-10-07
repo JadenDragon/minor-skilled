@@ -12,10 +12,9 @@ public class ItemController : MonoBehaviour
     {
         //calls gameManager and accesses the onItemPickupTrigger action
         //adds ItemController to gameManager list of subscribed events
-        Debug.Log(GameManager.current);
         GameManager.current.onItemPickupTrigger += OnItemPickup;
         count = 0;
-        //Debug.Log(GameManager);
+        Debug.Log($"My object is {gameObject.name} > {transform.position}");
     }
 
 
@@ -35,5 +34,11 @@ public class ItemController : MonoBehaviour
             GameManager.current.ItemPickup();
             count += 1;
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, 3.0f);
     }
 }
