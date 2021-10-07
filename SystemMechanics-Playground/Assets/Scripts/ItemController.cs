@@ -12,8 +12,10 @@ public class ItemController : MonoBehaviour
     {
         //calls gameManager and accesses the onItemPickupTrigger action
         //adds ItemController to gameManager list of subscribed events
+        Debug.Log(GameManager.current);
         GameManager.current.onItemPickupTrigger += OnItemPickup;
         count = 0;
+        //Debug.Log(GameManager);
     }
 
 
@@ -24,12 +26,6 @@ public class ItemController : MonoBehaviour
         //increase item counter
         Debug.Log("this item is collected");
     }
-
-    /*private void OnCollisionEnter(Collision collision)
-    {
-        //Debug.Log("I got it");
-        GameManager.current.ItemPickup();
-    }*/
 
     private void OnTriggerEnter(Collider other)
     {

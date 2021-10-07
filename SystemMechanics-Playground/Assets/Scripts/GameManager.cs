@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +14,7 @@ public class GameManager : MonoBehaviour
     }
 
     //define onItemPickup event
-    public event System.Action onItemPickupTrigger;
+    public event Action onItemPickupTrigger;
 
     public void ItemPickup()
     {
