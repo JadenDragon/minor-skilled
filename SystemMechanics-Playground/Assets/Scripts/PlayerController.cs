@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     CharacterController charCntrl;
     [SerializeField] Vector3 currentMovement;
 
-    float charVelocity;
+    //[SerializeField] float charVelocity;
     float moveZ;
     float moveX;
 
@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
         {
             currentMovement.y = jumpVelocity;
         }
-        charCntrl.Move(currentMovement);
+        charCntrl.Move(((currentMovement) /**charVelocity* Time.deltaTime*/));
     }
 
     void handlePlayerRotation()
