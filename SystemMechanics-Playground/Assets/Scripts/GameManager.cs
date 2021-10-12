@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     {
         if (onItemPickupTrigger != null)
         {
-            Debug.Log("Item is here boy");
+            //Debug.Log("Item is here boy");
             onItemPickupTrigger();
             
         }
