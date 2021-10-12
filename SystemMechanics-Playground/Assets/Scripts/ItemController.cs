@@ -39,6 +39,6 @@ public class ItemController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, 3.0f);
+        Gizmos.DrawWireSphere(transform.position, 0.5f);
     }
 }

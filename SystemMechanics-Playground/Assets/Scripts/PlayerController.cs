@@ -8,11 +8,11 @@ public class PlayerController : MonoBehaviour
     CharacterController charCntrl;
     [SerializeField] Vector3 currentMovement;
 
-    float velocity;
-    float vertical;
-    float horizontal;
+    float charVelocity;
+    float moveZ;
+    float moveX;
 
-    Vector3 playerInput;
+    Vector3 playerMovement;
 
     bool charIsGrounded;
     float jumpVelocity;
@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
         if(charCntrl)
         {
             handlePlayerMovement();
+            handlePlayerRotation();
             charIsGrounded = charCntrl.isGrounded;
         }
     }
@@ -37,13 +38,13 @@ public class PlayerController : MonoBehaviour
 
     void handlePlayerMovement()
     {
-        vertical = Input.GetAxis("Vertical");
-        horizontal = Input.GetAxis("Horizontal");
+        moveZ = Input.GetAxis("Vertical");
+        moveX = Input.GetAxis("Horizontal");
 
-        playerInput = new Vector3(vertical, 0f, horizontal);
+        playerMovement = new Vector3(moveX, 0f, moveZ);
 
         //instantiate currentMove and pass to charCntrl to move player
-        currentMovement = new Vector3(playerInput.x, charIsGrounded ? 0.0f : -1.0f, -playerInput.z) * Time.deltaTime;
+        currentMovement = new Vector3(playerMovement.x, charIsGrounded ? 0.0f : -1.0f, playerMovement.z) * Time.deltaTime;
 
         if (charIsGrounded)
         {
@@ -52,6 +53,21 @@ public class PlayerController : MonoBehaviour
         charCntrl.Move(currentMovement);
     }
 
-    
+    void handlePlayerRotation()
+    {
+        if (moveX > 0)
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Vector3.right), 2f * Time.deltaTime);
+        else if (moveX < 0)
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Vector3.left), 2f * Time.deltaTime);
+        if (moveZ > 0)
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Vector3.forward), 2f * Time.deltaTime);
+        else if (moveX < 0)
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Vector3.back), 2f * Time.deltaTime);
+    }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, 2.0f);
+    }
 }
