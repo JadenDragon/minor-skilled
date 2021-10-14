@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         charCntrl = this.GetComponent<CharacterController>();
+        //transform.position = Vector3.zero;
     }
 
     // Update is called once per frame
@@ -44,13 +45,16 @@ public class PlayerController : MonoBehaviour
         playerMovement = new Vector3(moveX, 0f, moveZ);
 
         //instantiate currentMove and pass to charCntrl to move player
-        currentMovement = new Vector3(playerMovement.x, charIsGrounded ? 0.0f : -1.0f, playerMovement.z) * Time.deltaTime;
+        currentMovement = new Vector3(playerMovement.x, /*charIsGrounded ? 0.0f : 0.0f*/-10f, playerMovement.z) * Time.deltaTime;
 
         if (charIsGrounded)
         {
-            currentMovement.y = jumpVelocity;
+            //currentMovement.y = 
+            //temp fix for setting the player on the ground
+            charCntrl.center = new Vector3(0, 1, 0);
         }
         charCntrl.Move(((currentMovement) /**charVelocity* Time.deltaTime*/));
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down), Color.red);
     }
 
     void handlePlayerRotation()
