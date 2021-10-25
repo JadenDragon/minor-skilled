@@ -8,6 +8,15 @@ public class GameManager : MonoBehaviour
     //references the script to be used
     public static GameManager current;
 
+    public HealthBar healthBar;
+
+    private void Start()
+    {
+        HealthSystem playerHealth = new HealthSystem(100);
+
+        healthBar.Setup(playerHealth);
+        Debug.Log("Health: " + playerHealth.GetHealthPercent());
+    }
     private void Awake()
     {
         current = this;
@@ -25,4 +34,6 @@ public class GameManager : MonoBehaviour
             
         }
     }
+
+
 }
