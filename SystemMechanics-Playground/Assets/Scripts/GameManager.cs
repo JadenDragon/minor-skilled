@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
         HealthSystem playerHealth = new HealthSystem(100);
 
         healthBar.Setup(playerHealth);
+        playerHealth.Damage(30);
         Debug.Log("Health: " + playerHealth.GetHealthPercent());
     }
     private void Awake()
